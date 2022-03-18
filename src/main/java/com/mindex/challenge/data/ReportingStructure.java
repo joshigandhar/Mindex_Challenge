@@ -1,4 +1,5 @@
 package com.mindex.challenge.data;
+import com.mindex.challenge.data.Employee; // Is it required?
 
 
 public class ReportingStructure {

@@ -4,10 +4,14 @@ import com.mindex.challenge.data.Employee;
 import com.mindex.challenge.data.ReportingStructure; // added new package
 import com.mindex.challenge.data.Compensation; // added new package
 import com.mindex.challenge.service.EmployeeService;
+import com.mindex.challenge.service.impl.CompensationService;
+import com.mindex.challenge.service.impl.ReportingStructureService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 public class EmployeeController {
@@ -15,6 +19,12 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    private ReportingStructureService reportingStructureService;
+
+    @Autowired
+    private CompensationService compensationService;
     
 
     @PostMapping("/employee")
@@ -42,25 +52,26 @@ public class EmployeeController {
     //ReportinStructure
     // accept employeeid and return ReportingStructure
     @GetMapping("/employee/{id}/ReportingStructure")
-    public ReportingStructure calculateReports(@PathVariable("id") String id) {
+    public ReportingStructure formStructure(@PathVariable("id") String id) {
         LOG.debug("Received employee create request for id [{}]", id); //change log statement
 
-        return employeeService.formStructure(id);
+        return reportingStructureService.formStructure(id);
     }
-    
+
+
     // Compensation
     @PostMapping("/employee")
-    public Compensation createCompensation(@RequestBody Employee employee) {
-        LOG.debug("Received employee create request for [{}]", employee);
+    public Compensation create(@RequestBody String id, double salary, Date effectiveDate) {
+        LOG.debug("Received employee create request for [{}]", id);
 
-        return employeeService.create(employee);
+        return compensationService.create(id,salary,effectiveDate);
     }
 
     @GetMapping("/employee/{id}")
     public Compensation readCompensation(@PathVariable String id) {
         LOG.debug("Received employee create request for id [{}]", id);
 
-        return employeeService.read(id);
+        return compensationService.read(id);
     }
     
 }

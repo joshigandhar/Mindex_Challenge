@@ -57,7 +57,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.save(employee);
     }
     
-    
+    /*
     /// Invoke's employeeStructure method
     @Override
     public ReportingStructure formStructure(String id) {
@@ -113,5 +113,5 @@ public class EmployeeServiceImpl implements EmployeeService {
         reportingStructure = new ReportingStructure(employee,hashSet.size()-1);
 
         return reportingStructure;
-    }
+    }*/
 }

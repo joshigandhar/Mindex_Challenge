@@ -33,6 +33,9 @@ public class CompensationServiceImpl implements CompensationService {
         if (employee == null) {
             throw new RuntimeException("Invalid employeeId: " + id);
         }
+        if (salary <= -1) {
+            throw new RuntimeException("Invalid salary: " + salary);
+        }
         Compensation compensation = new Compensation();
         compensation.setEmployee(employee);
         compensation.setSalary(salary);

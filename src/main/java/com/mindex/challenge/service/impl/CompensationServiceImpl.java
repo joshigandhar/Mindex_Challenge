@@ -4,18 +4,18 @@ import com.mindex.challenge.dao.CompensationRepository;
 import com.mindex.challenge.dao.EmployeeRepository;
 import com.mindex.challenge.data.Compensation;
 import com.mindex.challenge.data.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-//import com.mindex.challenge.service.CompensationService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
 
 import java.util.Date;
 
 
 @Service
-public class CompensationServiceImpl {
+public class CompensationServiceImpl implements CompensationService {
 
     private static final Logger LOG = LoggerFactory.getLogger(CompensationServiceImpl.class);
 
@@ -45,7 +45,7 @@ public class CompensationServiceImpl {
 
 
     //@Override
-    public Compensation read(String id) {
+    public Compensation readCompensation(String id) {
         LOG.debug("Reading compensation with id [{}]", id);
 
         Compensation compensation = compensationRepository.findCompensationById(id);

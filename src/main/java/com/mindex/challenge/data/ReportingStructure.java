@@ -1,13 +1,11 @@
 package com.mindex.challenge.data;
-import com.mindex.challenge.data.Employee; // Is it required?
+import com.mindex.challenge.data.Employee;
 
 
 public class ReportingStructure {
-	
-	
-	// fields
+
 	private Employee employee;
-	private int numberOfReports; // long or int?
+	private int numberOfReports;
 	
 	public ReportingStructure(Employee employee, int numberOfReports) {
 		

@@ -8,5 +8,5 @@ public interface EmployeeService {
     Employee read(String id);
     Employee update(Employee employee);
     // Should I add this over here?* why?
-    ReportingStructure formStructure(String id);
+    //ReportingStructure formStructure(String id);
 }

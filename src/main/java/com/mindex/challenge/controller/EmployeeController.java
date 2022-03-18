@@ -21,10 +21,12 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @Autowired
-    private ReportingStructureService reportingStructureService;
+    private CompensationService compensationService;
 
     @Autowired
-    private CompensationService compensationService;
+    private ReportingStructureService reportingStructureService;
+
+
     
 
     @PostMapping("/employee")
@@ -49,8 +51,7 @@ public class EmployeeController {
         return employeeService.update(employee);
     }
     
-    //ReportinStructure
-    // accept employeeid and return ReportingStructure
+
     @GetMapping("/employee/{id}/ReportingStructure")
     public ReportingStructure formStructure(@PathVariable("id") String id) {
         LOG.debug("Received employee create request for id [{}]", id); //change log statement
@@ -59,7 +60,7 @@ public class EmployeeController {
     }
 
 
-    // Compensation
+
     @PostMapping("/employee")
     public Compensation create(@RequestBody String id, double salary, Date effectiveDate) {
         LOG.debug("Received employee create request for [{}]", id);
@@ -71,7 +72,7 @@ public class EmployeeController {
     public Compensation readCompensation(@PathVariable String id) {
         LOG.debug("Received employee create request for id [{}]", id);
 
-        return compensationService.read(id);
+        return compensationService.readCompensation(id);
     }
     
 }

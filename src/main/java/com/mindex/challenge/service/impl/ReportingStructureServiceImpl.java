@@ -1,6 +1,5 @@
 package com.mindex.challenge.service.impl;
 
-import com.mindex.challenge.dao.CompensationRepository;
 import com.mindex.challenge.dao.EmployeeRepository;
 import com.mindex.challenge.data.Employee;
 import com.mindex.challenge.data.ReportingStructure;
@@ -21,24 +20,17 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @Autowired
-    private CompensationRepository compensationRepository;
-    /// Invoke's employeeStructure method
+
+
     @Override
     public ReportingStructure formStructure(String id) {
-        LOG.debug("Evaulating employee direct report [{}]", id); //change
+        LOG.debug("Evaluating employee direct report [{}]", id);
 
         Employee employee = employeeRepository.findByEmployeeId(id);
 
         if (employee == null) {
             throw new RuntimeException("Invalid employeeId: " + id);
         }
-
-        return employeeStructure(id,employee);
-    }
-
-    //Builds Employee Structure for numberOfReports
-    public ReportingStructure employeeStructure(String id,Employee employee) {
 
         ///create employee structure
 
@@ -77,6 +69,9 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
 
         reportingStructure = new ReportingStructure(employee,hashSet.size()-1);
 
+
+
         return reportingStructure;
     }
+
 }

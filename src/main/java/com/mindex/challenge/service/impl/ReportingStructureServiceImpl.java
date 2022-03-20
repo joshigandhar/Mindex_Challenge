@@ -40,10 +40,7 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
         // Call for countReport to fetch integer count of numberOfReports
         int numberOfReports =  countReports(employee);
 
-
         ReportingStructure reportingStructure = new ReportingStructure(employee,numberOfReports);
-
-
 
         return reportingStructure;
     }
@@ -52,13 +49,13 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
     /**
      *
      * Calculates employeeReportCount by enqueueing subordinate employee  and dequeuing current or senior employee
-     * in the hierarchy
+     * in the hierarchy.
      *
      * @param employee : Employee type evaluated from employee id
-     * @return : fully filled employee reporting structure
+     * @return : count of reports
      */
     public int countReports(Employee employee){
-        LOG.debug("Evaluating employee direct report [{}]", employee.getEmployeeId());
+        LOG.debug("Evaluating employee direct reports for id: [{}]", employee.getEmployeeId());
 
         // Hold Employee in queue
         Queue<Employee> employeeQueue = new ArrayDeque<>();
@@ -71,7 +68,6 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
         // Count for the number of employee's reporting beneath the specified employee
         int employeeReportCount = 0;
 
-
         while(!employeeQueue.isEmpty()){
 
             // reports : employee in the queue
@@ -80,7 +76,7 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
             // Ensures employee that are reported are considered
             if(reports.getDirectReports() != null){
 
-                //subordinate : subordinate employee that reports to current employee in the hirerachy
+                //subordinate : subordinate employee that reports to current employee in the hierarchy
                 for(Employee subordinate : reports.getDirectReports()){
 
                     // HashSet to check for visited employee
@@ -104,7 +100,7 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
     /**
      *
      * @param employee : employee object with empty fields except employee id
-     * @param id : employee
+     * @param id : employeeId
      */
     public void populateEmployee(Employee employee,String id){
 
@@ -115,8 +111,6 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
             employee.setPosition(employeeComplete.getPosition());
             employee.setDepartment(employeeComplete.getDepartment());
             employee.setDirectReports(employeeComplete.getDirectReports());
-
-
     }
 
 

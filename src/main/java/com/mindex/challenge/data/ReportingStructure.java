@@ -10,13 +10,13 @@ public class ReportingStructure {
 	public ReportingStructure(){
 
 	}
-	
+
+
 	public ReportingStructure(Employee employee, int numberOfReports) {
 		
 		this.employee = employee;
 		this.numberOfReports = numberOfReports;
 	}
-		
 
 
 	public int getNumberOfReports() {

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
- * Compensation repository stores and retrieves compensation type details with as Employee type input parameter
+ * Compensation repository stores and retrieves compensation type details with an Employee type input parameter
  *
  */
 @Repository

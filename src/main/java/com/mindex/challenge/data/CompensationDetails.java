@@ -3,7 +3,7 @@ package com.mindex.challenge.data;
 import java.time.LocalDate;
 
 /**
- * CompensationDetails stores salary and effectiveDate provided at CompensationController from RequestBody
+ * CompensationDetails stores salary and effectiveDate obtained from CompensationController from RequestBody
  */
 
 public class CompensationDetails {

@@ -2,6 +2,7 @@ package com.mindex.challenge.service.impl;
 
 import com.mindex.challenge.dao.EmployeeRepository;
 import com.mindex.challenge.data.Compensation;
+import com.mindex.challenge.data.CompensationDetails;
 import com.mindex.challenge.service.CompensationService;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,13 +47,17 @@ public class CompensationServiceImplTest {
     public void testCreateRead(){
         Compensation testCompensation = new Compensation();
         LocalDate localDate = LocalDate.parse("2022-03-18");
-        String employeeId = "16a596ae-edd3-4847-99fe-c4518e82c86f";
-        testCompensation.setEffectiveDate(localDate);
-        testCompensation.setSalary(90000);
+        String employeeId = "16a596ae-edd3-4847-99fe-c4518e82c86f"; // John Lennon
 
+        CompensationDetails details = new CompensationDetails();
+        details.setEffectiveDate(localDate);
+        details.setSalary(90000);
+        testCompensation.setSalary(details.getSalary());
+        testCompensation.setEffectiveDate(details.getEffectiveDate());
 
         // Create checks
-        Compensation createdCompensation = restTemplate.postForEntity(compensationIdUrl, testCompensation, Compensation.class,employeeId).getBody();
+        Compensation createdCompensation = restTemplate.postForEntity(compensationIdUrl, details, Compensation.class,employeeId).getBody();
+
         assertNotNull(createdCompensation.getEmployee());
         assertCompensationEquivalence(testCompensation, createdCompensation);
 

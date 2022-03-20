@@ -26,7 +26,7 @@ public class CompensationServiceImpl implements CompensationService {
     private EmployeeRepository employeeRepository;
 
     /**
-     * Forms a Compensation Object for a specified employee id
+     * Forms a Compensation Object for a specified new employee id
      *
      * @param id : employee id
      * @param salary : Salary of the employee
@@ -43,12 +43,19 @@ public class CompensationServiceImpl implements CompensationService {
         if (salary <= -1) {
             throw new RuntimeException("Invalid salary: " + salary);
         }
-        Compensation compensation = new Compensation();
+
+        Compensation compensation = compensationRepository.findCompensationByEmployee(employee);
+        if(compensation != null ){
+            throw new RuntimeException("Compensation for this Employee already exists with id: " + id);
+        }
+
+        compensation = new Compensation();
         compensation.setEmployee(employee);
         compensation.setSalary(salary);
         compensation.setEffectiveDate(effectiveDate);
 
         compensationRepository.insert(compensation);
+
 
         return compensation;
     }

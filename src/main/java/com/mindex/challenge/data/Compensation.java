@@ -1,9 +1,11 @@
 package com.mindex.challenge.data;
 
+
 import java.time.LocalDate;
 import java.util.Date;
 
 public class Compensation {
+
 	private Employee employee;
 	private float salary;
 	private LocalDate effectiveDate;

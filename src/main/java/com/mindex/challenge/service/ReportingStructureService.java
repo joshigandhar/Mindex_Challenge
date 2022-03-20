@@ -1,7 +1,7 @@
-package com.mindex.challenge.service.impl;
+package com.mindex.challenge.service;
 
 import com.mindex.challenge.data.ReportingStructure;
 
 public interface ReportingStructureService {
-    ReportingStructure formStructure(String id);
+    ReportingStructure create(String id);
 }

@@ -1,17 +1,13 @@
 package com.mindex.challenge.controller;
 
 import com.mindex.challenge.data.Employee;
-import com.mindex.challenge.data.ReportingStructure; // added new package
-import com.mindex.challenge.data.Compensation; // added new package
 import com.mindex.challenge.service.EmployeeService;
-import com.mindex.challenge.service.impl.CompensationService;
-import com.mindex.challenge.service.impl.ReportingStructureService;
+import com.mindex.challenge.service.CompensationService;
+import com.mindex.challenge.service.ReportingStructureService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 
 @RestController
 public class EmployeeController {
@@ -52,27 +48,5 @@ public class EmployeeController {
     }
     
 
-    @GetMapping("/employee/{id}/ReportingStructure")
-    public ReportingStructure formStructure(@PathVariable("id") String id) {
-        LOG.debug("Received employee create request for id [{}]", id); //change log statement
-
-        return reportingStructureService.formStructure(id);
-    }
-
-
-
-    @PostMapping("/employee")
-    public Compensation create(@RequestBody String id, double salary, Date effectiveDate) {
-        LOG.debug("Received employee create request for [{}]", id);
-
-        return compensationService.create(id,salary,effectiveDate);
-    }
-
-    @GetMapping("/employee/{id}")
-    public Compensation readCompensation(@PathVariable String id) {
-        LOG.debug("Received employee create request for id [{}]", id);
-
-        return compensationService.readCompensation(id);
-    }
     
 }
